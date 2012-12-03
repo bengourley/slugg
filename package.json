@@ -1,5 +1,5 @@
 { "name": "slugg"
-, "version": "0.0.0"
+, "version": "0.0.1"
 , "description": "Make strings url safe (with no dependencies)"
 , "keywords": [ "slug", "url", "string" ]
 , "main": "slugg.js"
