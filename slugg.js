@@ -1,8 +1,20 @@
 module.exports = slugg
 
-function slugg(string, separator) {
+var defaultSeparator = '-'
 
-  if (typeof separator === 'undefined') separator = '-'
+function slugg(string, separator, toStrip) {
+
+  // Separator is optional
+  if (typeof separator === 'undefined') separator = defaultSeparator
+
+  // Separator might be omitted and toStrip in its place
+  if (separator instanceof RegExp) {
+    toStrip = separator
+    separator = defaultSeparator
+  }
+
+  // Only a separator was passed
+  if (typeof toStrip === 'undefined') toStrip = new RegExp('')
 
   // Swap out non-english characters for their english equivalent
   for (var i = 0, len = string.length; i < len; i++) {
@@ -14,7 +26,9 @@ function slugg(string, separator) {
   string = string
     // Make lower-case
     .toLowerCase()
-    // Replace non-word characters with '-'
+    // Strip chars that shouldn't be replaced with separator
+    .replace(toStrip, '')
+    // Replace non-word characters with separator
     .replace(/[\W|_]+/g, separator)
     // Strip dashes from the beginning
     .replace(new RegExp('^' + separator + '+'), '')
