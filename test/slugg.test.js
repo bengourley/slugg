@@ -18,6 +18,7 @@ describe('slug()', function () {
     assert.equal(slug('Füße'), 'fusse')
     assert.equal(slug('lýs'), 'lys')
     assert.equal(slug('£5+5'), '5-5')
+    assert.equal(slug('è'), 'e')
   })
 
   it('should not produce a string with successive dashes', function () {
