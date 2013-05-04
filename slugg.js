@@ -34,6 +34,8 @@ function slugg(string, separator, toStrip) {
     .replace(new RegExp('^' + separator + '+'), '')
     // Strip dashes from the end
     .replace(new RegExp(separator + '+$'), '')
+    // Strip apostrophes
+    .replace(/'/g, '')
 
   return string
 
