@@ -7,6 +7,7 @@ Make strings url-safe.
 - Not in coffee-script (lol)
 - Coerces foreign symbols to their english equivalent
 - Doesn't try to do anything fancy with symbols (just removes them)
+- Works in browser (`window.slugg`) and AMD/CommonJS-flavoured module loaders
 
 ```
 npm install slugg
