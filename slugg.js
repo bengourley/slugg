@@ -1,4 +1,19 @@
-module.exports = slugg
+(function (root) {
+
+// AMD
+if (typeof define !== 'undefined' && define.amd) {
+  define([], function () {
+    return slugg
+  })
+}
+// CommonJS
+else if (typeof module !== 'undefined' && module.exports) {
+  module.exports = slugg
+}
+// Script tag
+else {
+  root.slugg = slugg
+}
 
 var defaultSeparator = '-'
 
@@ -41,7 +56,7 @@ function slugg(string, separator, toStrip) {
 
 // Conversion table. Modified version of:
 // https://github.com/dodo/node-slug/blob/master/src/slug.coffee
-var chars = module.exports.chars = {
+var chars = slugg.chars = {
   // Latin
   'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE',
   'Ç': 'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I',
@@ -93,3 +108,5 @@ var chars = module.exports.chars = {
   'ņ': 'n', 'ū': 'u', 'Ā': 'A', 'Ē': 'E', 'Ģ': 'G', 'Ī': 'i',
   'Ķ': 'k', 'Ļ': 'L', 'Ņ': 'N', 'Ū': 'u'
 }
+
+} (this));
