@@ -1,5 +1,5 @@
 var slug = require('..')
-  , assert = require('assert')
+  , assert = require('proclaim')
 
 describe('slug()', function () {
 
@@ -41,9 +41,11 @@ describe('slug()', function () {
   })
 
   it('should convert letter-like chars into english alphanumeric chars', function () {
-    Object.keys(slug.chars).forEach(function (key) {
-      assert(/\w+/.test(slug(key)), key + slug(key))
-    })
+    for (var key in slug.chars) {
+      if (slug.chars.hasOwnProperty(key)) {
+        assert.ok(/\w+/.test(slug(key)), key + slug(key))
+      }
+    }
   })
 
   it('should do what it says in the readme', function () {
