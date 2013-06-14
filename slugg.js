@@ -1,20 +1,5 @@
 (function (root) {
 
-// AMD
-if (typeof define !== 'undefined' && define.amd) {
-  define([], function () {
-    return slugg
-  })
-}
-// CommonJS
-else if (typeof module !== 'undefined' && module.exports) {
-  module.exports = slugg
-}
-// Script tag
-else {
-  root.slugg = slugg
-}
-
 var defaultSeparator = '-'
 
 function slugg(string, separator, toStrip) {
@@ -109,4 +94,19 @@ var chars = slugg.chars = {
   'Ķ': 'k', 'Ļ': 'L', 'Ņ': 'N', 'Ū': 'u'
 }
 
-} (this));
+// Be compatible with different module systems
+
+if (typeof define !== 'undefined' && define.amd) {
+  // AMD
+  define([], function () {
+    return slugg
+  })
+} else if (typeof module !== 'undefined' && module.exports) {
+  // CommonJS
+  module.exports = slugg
+} else {
+  // Script tag
+  root.slugg = slugg
+}
+
+}(this))
