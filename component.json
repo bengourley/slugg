@@ -1,0 +1,14 @@
+{
+  "name": "slugg",
+  "repo": "bengourley/slugg",
+  "description": "Make strings url safe",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "slugg.js",
+  "scripts": [
+    "slugg.js"
+  ]
+}
