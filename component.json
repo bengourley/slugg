@@ -5,7 +5,7 @@
   "version": "0.1.2",
   "repository": "git@github.com:bengourley/slugg.git",
   "author": "Ben Gourley",
-  "license": "BSD"
+  "license": "BSD",
   "keywords": [
     "slug",
     "url",
