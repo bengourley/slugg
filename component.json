@@ -2,7 +2,7 @@
   "name": "slugg",
   "repo": "bengourley/slugg",
   "description": "Make strings url safe (with no dependencies)",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": "git@github.com:bengourley/slugg.git",
   "author": "Ben Gourley",
   "license": "BSD",
