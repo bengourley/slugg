@@ -15,7 +15,7 @@ npm install slugg
 
 ## Usage:
 
-### slug(string, [separator])
+### slug(string, [separator], [toStrip], [preserveCase])
 
 ```js
 var slug = require('slugg')
@@ -45,3 +45,11 @@ slug('Mum\'s cooking', /'/g)
 //-> 'mums-cooking'
 ```
 Remember to use the `g` flag if you want all the matches stripped (not just the first).
+
+```js
+slug('Mums cooking', undefined, undefined, true)
+//-> 'Mums-cooking'
+```
+
+With the preserveCase option, you can allow uppercase characters
+as well in the output.

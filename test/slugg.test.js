@@ -40,6 +40,10 @@ describe('slug()', function () {
     assert.equal(slug('I ♥ you', '_'), 'i_you')
   })
 
+  it('can preserve input case', function () {
+    assert.equal(slug('Hey Whats Up', undefined, undefined, true), 'Hey-Whats-Up')
+  })
+
   it('should convert letter-like chars into english alphanumeric chars', function () {
     for (var key in slug.chars) {
       if (slug.chars.hasOwnProperty(key)) {
