@@ -2,7 +2,7 @@
 
 var defaultSeparator = '-'
 
-function slugg(string, separator, toStrip) {
+function slugg(string, separator, toStrip, keepCase) {
 
   // Separator is optional
   if (typeof separator === 'undefined') separator = defaultSeparator
@@ -23,9 +23,12 @@ function slugg(string, separator, toStrip) {
     }
   }
 
-  string = string
+  if (keepCase !== true) {
     // Make lower-case
-    .toLowerCase()
+    string = string.toLowerCase();
+  }
+
+  string = string
     // Strip chars that shouldn't be replaced with separator
     .replace(toStrip, '')
     // Replace non-word characters with separator
