@@ -60,4 +60,11 @@ describe('slug()', function () {
     assert.equal(slug('Ben\'s slugg module', '_', /'/g), 'bens_slugg_module')
   })
 
+  it('should strip any sort of quotemarks by default', function () {
+    assert.equal(slug('How’s you?'), 'hows-you')
+    assert.equal(slug('How\'s you?'), 'hows-you')
+    assert.equal(slug('He said: "I like turtles"'), 'he-said-i-like-turtles')
+    assert.equal(slug('He said: “I like turtles”'), 'he-said-i-like-turtles')
+  })
+
 })

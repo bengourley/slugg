@@ -14,7 +14,7 @@ function slugg(string, separator, toStrip) {
   }
 
   // Only a separator was passed
-  if (typeof toStrip === 'undefined') toStrip = new RegExp('')
+  if (typeof toStrip === 'undefined') toStrip = /['"’‘”“]/g
 
   // Swap out non-english characters for their english equivalent
   for (var i = 0, len = string.length; i < len; i++) {
