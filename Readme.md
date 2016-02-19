@@ -37,11 +37,14 @@ slug('Kevin Spacey', ' ')
 //-> 'kevin spacey'
 ```
 
-If you want to strip some characters rather than replace them with a separator, pass
-a regex as the last option that will match the chars you want to replace, eg:
+By default, slugg will strip (i.e. remove and not replace) any sort of quotemark: `'"’‘”“`.
+
+If you want to control which characters are stripped, pass a regex as the last option
+that will match the chars you want to replace, eg:
 
 ```js
 slug('Mum\'s cooking', /'/g)
 //-> 'mums-cooking'
 ```
+
 Remember to use the `g` flag if you want all the matches stripped (not just the first).
