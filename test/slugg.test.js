@@ -38,6 +38,8 @@ describe('slug()', function () {
   it('should use a custom separator if present', function () {
     assert.equal(slug('I ♥ you', ' '), 'i you')
     assert.equal(slug('I ♥ you', '_'), 'i_you')
+    assert.equal(slug('I ♥ you', {separator: ' '}), 'i you')
+    assert.equal(slug('I ♥ you', {separator: '_'}), 'i_you')
   })
 
   it('should convert letter-like chars into english alphanumeric chars', function () {
@@ -53,11 +55,14 @@ describe('slug()', function () {
     assert.equal(slug('Today I found £5'), 'today-i-found-5')
     assert.equal(slug('I ♥ you'), 'i-you')
     assert.equal(slug('Kevin Spacey', ' '), 'kevin spacey')
+    assert.equal(slug('Kevin Spacey', {separator: ' '}), 'kevin spacey')
   })
 
   it('should accept a regex of chars to strip rather than replace with dashes', function () {
     assert.equal(slug('Ben\'s slugg module', /'/g), 'bens-slugg-module')
     assert.equal(slug('Ben\'s slugg module', '_', /'/g), 'bens_slugg_module')
+    assert.equal(slug('Ben\'s slugg module', {toStrip: /'/g}), 'bens-slugg-module')
+    assert.equal(slug('Ben\'s slugg module', {separator: '_', toStrip: /'/g}), 'bens_slugg_module')
   })
 
   it('should strip any sort of quotemarks by default', function () {

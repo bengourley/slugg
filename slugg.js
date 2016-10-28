@@ -1,20 +1,46 @@
 (function (root) {
 
 var defaultSeparator = '-'
+var defaultToStrip = /['"’‘”“]/g
+var defaultToLowerCase = true
 
 function slugg(string, separator, toStrip) {
 
-  // Separator is optional
-  if (typeof separator === 'undefined') separator = defaultSeparator
+  var options = {}
 
-  // Separator might be omitted and toStrip in its place
-  if (separator instanceof RegExp) {
-    toStrip = separator
-    separator = defaultSeparator
+  if (typeof separator === 'object') {
+    options = separator
+
+    // Separator is optional
+    if (typeof options.separator === 'undefined') options.separator = defaultSeparator
+
+    // toStrip is optional
+    if (typeof options.toStrip === 'undefined') options.toStrip = defaultToStrip
+
+    // toLowerCase is optional
+    if (typeof options.toLowerCase === 'undefined') options.toLowerCase = defaultToLowerCase
+  } else {
+    options.separator = separator
+    options.toStrip = toStrip
+
+    // Separator is optional
+    if (typeof options.separator === 'undefined') options.separator = defaultSeparator
+
+    // Separator might be omitted and toStrip in its place
+    if (options.separator instanceof RegExp) {
+      options.toStrip = separator
+      options.separator = defaultSeparator
+    }
+
+    // Only a separator was passed
+    if (typeof options.toStrip === 'undefined') options.toStrip = /['"’‘”“]/g
+
+    // Keep default behavior
+    options.toLowerCase = defaultToLowerCase
   }
 
-  // Only a separator was passed
-  if (typeof toStrip === 'undefined') toStrip = /['"’‘”“]/g
+  // Make lower-case
+  if (options.toLowerCase) string = string.toLowerCase()
 
   // Swap out non-english characters for their english equivalent
   for (var i = 0, len = string.length; i < len; i++) {
@@ -24,16 +50,14 @@ function slugg(string, separator, toStrip) {
   }
 
   string = string
-    // Make lower-case
-    .toLowerCase()
     // Strip chars that shouldn't be replaced with separator
-    .replace(toStrip, '')
+    .replace(options.toStrip, '')
     // Replace non-word characters with separator
-    .replace(/[\W|_]+/g, separator)
+    .replace(/[\W|_]+/g, options.separator)
     // Strip dashes from the beginning
-    .replace(new RegExp('^' + separator + '+'), '')
+    .replace(new RegExp('^' + options.separator + '+'), '')
     // Strip dashes from the end
-    .replace(new RegExp(separator + '+$'), '')
+    .replace(new RegExp(options.separator + '+$'), '')
 
   return string
 
