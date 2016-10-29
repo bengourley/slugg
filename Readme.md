@@ -15,7 +15,7 @@ npm install slugg
 
 ## Usage:
 
-### slug(string, [separator])
+### slug(string, [separator, toStrip])
 
 ```js
 var slug = require('slugg')
@@ -48,3 +48,31 @@ slug('Mum\'s cooking', /'/g)
 ```
 
 Remember to use the `g` flag if you want all the matches stripped (not just the first).
+
+After version 1.1.0, a new syntax has been introduced:
+
+### slug(string, [options])
+
+If you want a separator other than '-', pass it in as the `separator` option:
+
+```js
+slug('Kevin Spacey', { separator: ' ' })
+//-> 'kevin spacey'
+```
+
+If you want to control which characters are stripped, pass a regex as the `toStrip` option
+that will match the chars you want to replace, eg:
+
+```js
+slug('Mum\'s cooking', { toStrip: /'/g })
+//-> 'mums-cooking'
+```
+Remember to use the `g` flag if you want all the matches stripped (not just the first).
+
+By default, slugg will convert your string to lower case. If you want to disable it just
+pass the `toLowerCase` option as `false`, eg:
+
+```js
+slug('Slugg rocks!', { toLowerCase: false })
+//-> 'Slugg-rocks'
+```
