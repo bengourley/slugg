@@ -10,21 +10,9 @@ function slugg(string, separator, toStrip) {
 
   if (typeof separator === 'object') {
     options = separator
-
-    // Separator is optional
-    if (typeof options.separator === 'undefined') options.separator = defaultSeparator
-
-    // toStrip is optional
-    if (typeof options.toStrip === 'undefined') options.toStrip = defaultToStrip
-
-    // toLowerCase is optional
-    if (typeof options.toLowerCase === 'undefined') options.toLowerCase = defaultToLowerCase
   } else {
     options.separator = separator
     options.toStrip = toStrip
-
-    // Separator is optional
-    if (typeof options.separator === 'undefined') options.separator = defaultSeparator
 
     // Separator might be omitted and toStrip in its place
     if (options.separator instanceof RegExp) {
@@ -34,10 +22,16 @@ function slugg(string, separator, toStrip) {
 
     // Only a separator was passed
     if (typeof options.toStrip === 'undefined') options.toStrip = /['"’‘”“]/g
-
-    // Keep default behavior
-    options.toLowerCase = defaultToLowerCase
   }
+
+  // Separator is optional
+  if (typeof options.separator === 'undefined') options.separator = defaultSeparator
+
+  // toStrip is optional
+  if (typeof options.toStrip === 'undefined') options.toStrip = defaultToStrip
+
+  // toLowerCase is optional
+  if (typeof options.toLowerCase === 'undefined') options.toLowerCase = defaultToLowerCase
 
   // Make lower-case
   if (options.toLowerCase) string = string.toLowerCase()
