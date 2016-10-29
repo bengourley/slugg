@@ -72,4 +72,8 @@ describe('slug()', function () {
     assert.equal(slug('He said: “I like turtles”'), 'he-said-i-like-turtles')
   })
 
+  it('should not convert to lower case if specified', function () {
+    assert.equal(slug('He said: “I like turtles”', { toLowerCase: false }), 'He-said-I-like-turtles')
+  })
+
 })
