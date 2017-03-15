@@ -6,8 +6,8 @@ var defaultToLowerCase = true
 
 function slugg(string, separator, toStrip) {
   // Ensure the given parameter is a string.
-  if (!(typeof string === 'string' || string instanceof String)) {
-    string = String((string == null) ? '' : string)
+  if (!(typeof string === 'string' || string instanceof String || Object.prototype.toString.call(string) === "[object String]")) {
+    string = String(string ? string : '')
   }
 
   var options = {}
