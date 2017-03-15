@@ -42,13 +42,14 @@ describe('slug()', function () {
     assert.equal(slug('I ♥ you', {separator: '_'}), 'i_you')
   })
 
-  it('should work with invalid parameters', function () {
+  it('should work with different variable types', function () {
     assert.equal(slug(), '')
     assert.equal(slug(null), '')
     assert.equal(slug(45), '45')
     assert.equal(slug(true), 'true')
-    assert.equal(slug(false), '')
+    assert.equal(slug(false), 'false')
     assert.equal(slug('Hello World!'), 'hello-world')
+    assert.equal(slug(String('Hello World!')), 'hello-world')
   })
 
   it('should convert letter-like chars into english alphanumeric chars', function () {

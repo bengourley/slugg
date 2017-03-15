@@ -5,10 +5,9 @@ var defaultToStrip = /['"’‘”“]/g
 var defaultToLowerCase = true
 
 function slugg(string, separator, toStrip) {
-  // Ensure the given parameter is a string.
-  if (!(typeof string === 'string' || string instanceof String || Object.prototype.toString.call(string) === "[object String]")) {
-    string = String(string ? string : '')
-  }
+  // Coerce the value into a string.
+  if ([ undefined, null ].indexOf(string) !== -1) string = ''
+  string = typeof string.toString === 'function' ? string.toString() : ''
 
   var options = {}
 
