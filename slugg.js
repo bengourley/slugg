@@ -5,6 +5,10 @@ var defaultToStrip = /['"’‘”“]/g
 var defaultToLowerCase = true
 
 function slugg(string, separator, toStrip) {
+  // Ensure the given parameter is a string.
+  if (!(typeof string === 'string' || string instanceof String)) {
+    string = String((string == null) ? '' : string)
+  }
 
   var options = {}
 
