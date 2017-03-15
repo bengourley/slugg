@@ -42,6 +42,13 @@ describe('slug()', function () {
     assert.equal(slug('I ♥ you', {separator: '_'}), 'i_you')
   })
 
+  it('should work with invalid parameters', function () {
+    assert.equal(slug(), '')
+    assert.equal(slug(45), '45')
+    assert.equal(slug(true), 'true')
+    assert.equal(slug(false), 'false')
+  })
+
   it('should convert letter-like chars into english alphanumeric chars', function () {
     for (var key in slug.chars) {
       if (slug.chars.hasOwnProperty(key)) {
