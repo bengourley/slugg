@@ -1,6 +1,6 @@
 {
   "name": "slugg",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Make strings url safe (with no dependencies)",
   "publishConfig": {
     "registry": "http://registry.npmjs.org/"
